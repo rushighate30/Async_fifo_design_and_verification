@@ -51,37 +51,50 @@
   <p>Vinayak Ghate</p>
 
  # instruction writing here 
- <h2 id="introduction">Introduction</h2>
+<h2 id="introduction">Introduction</h2>
+
 <p>
-  This project focuses on the design and verification of an <strong>Asynchronous FIFO (First-In, First-Out)</strong> memory buffer,
-  which efficiently transfers data between two <strong>asynchronous clock domains</strong>. The implementation aims to ensure
-  reliable <strong>Clock Domain Crossing (CDC)</strong> by addressing synchronization and metastability challenges that typically occur
+  This project focuses on the design and verification of an <strong>Asynchronous FIFO (First-In, First-Out)</strong> memory buffer
+  that efficiently transfers data between two <strong>asynchronous clock domains</strong>. The implementation ensures reliable
+  <strong>Clock Domain Crossing (CDC)</strong> by addressing synchronization and metastability challenges that typically occur
   when signals pass between different clock frequencies.
 </p>
 
-<p>
-  The design uses <strong>separate read and write pointers</strong> that increment independently in their respective clock domains.
-  To avoid metastability during pointer comparison, a <strong>Gray code counter</strong> is used for pointer encoding, as it changes only
-  one bit per transition. This Gray code is then converted back to binary format within each domain to perform address calculations
-  and status flag generation (such as <code>full</code> and <code>empty</code> conditions).
-</p>
+<ul>
+  <li>
+    The design uses <strong>independent read and write pointers</strong> operating in separate clock domains to control data flow.
+  </li>
+  <li>
+    A <strong>Gray code counter</strong> is implemented for pointer encoding — ensuring only one bit changes per transition, 
+    reducing the risk of metastability during synchronization.
+  </li>
+  <li>
+    <strong>Gray-to-Binary conversion</strong> logic is used to perform accurate address calculation and to generate 
+    <code>full</code> and <code>empty</code> status flags.
+  </li>
+  <li>
+    A <strong>two-flip-flop (2FF) synchronizer</strong> mechanism is employed to safely synchronize pointer values between 
+    different clock domains, minimizing metastability.
+  </li>
+  <li>
+    The complete FIFO is divided into smaller Verilog modules for better readability and reusability — including memory, 
+    pointer, and synchronizer blocks.
+  </li>
+  <li>
+    <strong>SystemVerilog-based verification</strong> was performed using a comprehensive testbench to validate functionality 
+    under different conditions, such as asynchronous clock rates, data overflows, and empty/full flag transitions.
+  </li>
+  <li>
+    Simulation results confirm that the FIFO design successfully handles asynchronous read/write operations without 
+    data corruption or timing hazards.
+  </li>
+</ul>
 
 <p>
-  A <strong>two-flip-flop (2FF) synchronizer</strong> is employed to safely synchronize pointer values across clock domains, effectively
-  minimizing the chance of metastable states and ensuring stable operation. The complete FIFO design has been modularized into
-  multiple Verilog files, including memory storage, pointer logic, and synchronizer modules.
+  This project demonstrates a robust and efficient <strong>CDC design</strong> suitable for FPGA and SoC systems, 
+  where safe data transfer between multiple clock domains is a critical requirement.
 </p>
 
-<p>
-  Functional verification of the FIFO was carried out using <strong>SystemVerilog testbench</strong> methodology. Various test scenarios,
-  including normal data transfers, full and empty boundary conditions, and asynchronous clock frequency variations, were simulated
-  to validate the reliability and robustness of the FIFO design.
-</p>
-
-<p>
-  This project demonstrates a robust CDC mechanism suitable for FPGA and SoC-based systems where reliable data transfer between
-  independent clock domains is essential.
-</p>
 
 
   <h2 id="design">Design Space Exploration and Design Strategies</h2>
