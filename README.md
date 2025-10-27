@@ -53,47 +53,36 @@
  # instruction writing here 
 <h2 id="introduction">Introduction</h2>
 
-<p>
-  This project focuses on the design and verification of an <strong>Asynchronous FIFO (First-In, First-Out)</strong> memory buffer
-  that efficiently transfers data between two <strong>asynchronous clock domains</strong>. The implementation ensures reliable
-  <strong>Clock Domain Crossing (CDC)</strong> by addressing synchronization and metastability challenges that typically occur
-  when signals pass between different clock frequencies.
+<p style="text-align: justify;">
+  This project presents the design and verification of an <strong>Asynchronous FIFO (First-In, First-Out)</strong> memory structure,
+  developed to achieve reliable <strong>Clock Domain Crossing (CDC)</strong> between two asynchronous clock domains. The main objective
+  is to ensure safe and efficient data transfer while minimizing synchronization errors and avoiding metastability issues.
 </p>
 
-<ul>
-  <li>
-    The design uses <strong>independent read and write pointers</strong> operating in separate clock domains to control data flow.
-  </li>
-  <li>
-    A <strong>Gray code counter</strong> is implemented for pointer encoding — ensuring only one bit changes per transition, 
-    reducing the risk of metastability during synchronization.
-  </li>
-  <li>
-    <strong>Gray-to-Binary conversion</strong> logic is used to perform accurate address calculation and to generate 
-    <code>full</code> and <code>empty</code> status flags.
-  </li>
-  <li>
-    A <strong>two-flip-flop (2FF) synchronizer</strong> mechanism is employed to safely synchronize pointer values between 
-    different clock domains, minimizing metastability.
-  </li>
-  <li>
-    The complete FIFO is divided into smaller Verilog modules for better readability and reusability — including memory, 
-    pointer, and synchronizer blocks.
-  </li>
-  <li>
-    <strong>SystemVerilog-based verification</strong> was performed using a comprehensive testbench to validate functionality 
-    under different conditions, such as asynchronous clock rates, data overflows, and empty/full flag transitions.
-  </li>
-  <li>
-    Simulation results confirm that the FIFO design successfully handles asynchronous read/write operations without 
-    data corruption or timing hazards.
-  </li>
+<p style="text-align: justify;">
+  The FIFO employs independent <strong>read</strong> and <strong>write pointers</strong>, each operating in separate clock domains.
+  To prevent metastability during pointer synchronization, a <strong>Gray code counter</strong> is implemented, ensuring only one bit
+  changes during transitions. The design also includes <strong>Gray-to-Binary conversion</strong> logic for accurate address calculation
+  and status flag generation, such as <code>full</code> and <code>empty</code> conditions.
+</p>
+
+<p style="text-align: justify;">
+  A <strong>two-flip-flop (2FF) synchronizer</strong> technique is used to synchronize pointer values across clock domains, effectively
+  reducing the chances of metastable behavior. The design is modular, consisting of multiple Verilog files that handle specific
+  functionalities such as memory storage, pointer control, and synchronization.
+</p>
+
+<ul style="text-align: justify;">
+  <li>The FIFO design ensures reliable CDC and stable data transfer under asynchronous clock operation.</li>
+  <li>SystemVerilog-based testbench verification validates functionality across different timing scenarios.</li>
+  <li>The approach demonstrates a practical and reusable solution for FPGA and SoC-based system integration.</li>
 </ul>
 
-<p>
-  This project demonstrates a robust and efficient <strong>CDC design</strong> suitable for FPGA and SoC systems, 
-  where safe data transfer between multiple clock domains is a critical requirement.
+<p style="text-align: justify;">
+  Overall, this Asynchronous FIFO design provides a robust mechanism for handling data communication between independent clock domains,
+  combining efficient synchronization techniques with thorough functional verification.
 </p>
+
 
 
 
