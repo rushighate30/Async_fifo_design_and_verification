@@ -94,7 +94,7 @@
 
 <!-- 🖼️ Example image block -->
 <div style="text-align: center; margin: 20px 0;">
-  <img src="images/fifo_architecture.png" alt="FIFO Architecture Diagram" width="500" style="border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.2);" />
+  <img src="Design_Verification_Result/Async_FIFO.png" alt="FIFO Architecture Diagram" width="500" style="border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.2);" />
   <p style="font-style: italic; font-size: 14px;">Figure 1: Asynchronous FIFO Architecture showing CDC and module interactions.</p>
 </div>
 
