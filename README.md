@@ -87,67 +87,61 @@
 
 <h2 id="design">Design Space Exploration and Design Strategies</h2>
 <p style="text-align: justify;">
- The block diagram of async. FIFO that is implemented in this repo is given below. Thin lines represent single bit signal where as thisck lines represent multi-bit signal.
+ The block diagram of async. The FIFO implementation in this repository is as follows. Thin lines represent a single-bit signal, as thick lines represent a multi-bit signal.
 </p>
 
 <!-- 🖼️ Example image block -->
 <div style="text-align: center; margin: 20px 0;">
-  <img src="Design_Verification_Result/Async_FIFO.png" alt="FIFO Architecture Diagram" width="500" style="border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.2);" />
-  <p style="font-style: italic; font-size: 14px;">Figure 1: Asynchronous FIFO Architecture showing CDC and module interactions.</p>
+  <img src="Design_Verification_Result/Async_FIFO.png" alt="Async_FIFO" width="1000" style="border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.2);" />
+  <p style=" text-align: center; font-style: italic; font-size: 14px;">Figure 1: Asynchronous FIFO Architecture showing CDC and module interactions.</p>
 </div>
-
-<h3 id="dse-readwrite" style="text-align: justify;">Read &amp; Write Operations</h3>
-<p style="text-align: justify;">
-  Read and write pointers operate independently in their respective clock domains. The chosen approach uses
-  pointer incrementing with Gray-code encoding to minimize bit transitions during synchronization. Address wrapping
-  and next-pointer calculation are performed in binary after Gray-to-binary conversion for accurate indexing.
-</p>
-
-<h3 id="dse-signals" style="text-align: justify;">Signals Definition</h3>
-<p style="text-align: justify;">
-  Only essential signals are exposed: <code>wclk</code>, <code>rclk</code>, <code>wr_en</code>, <code>rd_en</code>,
-  <code>full</code>, and <code>empty</code>. Internal signals include synchronized pointer copies, binary addresses,
-  and memory read/write data buses. Minimizing exposed control signals reduces verification surface and simplifies integration.
-</p>
-
-<h3 id="dse-modules" style="text-align: justify;">Modularization Strategy</h3>
-<p style="text-align: justify;">
-  The system is divided into small reusable modules: top-level FIFO wrapper, memory array, pointer logic (read/write),
-  Gray/Binary conversion blocks, and a 2-FF synchronizer. This modular decomposition improves testability and allows
-  targeted optimization for critical blocks.
-</p>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   <h3 id="readwrite">Read and Write Operations</h3>
   <h4 id="operations">Operations</h4>
-  <p>Details about read/write operations...</p>
+<p>In an asynchronous FIFO, the read and write operations are managed by separate clock domains. The write pointer always points to the next word to be written. On a FIFO-write operation, the memory location pointed to by the write pointer is written, and then the write pointer is incremented to point to the next location to be written. Similarly, the read pointer always points to the current FIFO word to be read. On reset, both pointers are set to zero. When the first data word is written to the FIFO, the write pointer increments, the empty flag is cleared, and the read pointer, which is still addressing the contents of the first FIFO memory word, immediately drives that first valid word onto the FIFO data output port to be read by the receiver logic. The FIFO is empty when the read and write pointers are both equal, and it is full when the write pointer has wrapped around and caught up to the read pointer.</p>
 
   <h4 id="conditions">Full, Empty and Wrapping Condition</h4>
-  <p>Explanation...</p>
+<h3>Full, Empty, and Wrapping Condition</h3>
+
+<p align="justify">
+  The conditions for the FIFO to be full or empty are as follows:
+</p>
+
+<ul>
+  <li>
+    <strong>Empty Condition:</strong>  
+    The FIFO is empty when the read and write pointers are both equal. This condition happens when both pointers are reset to zero during a reset operation, or when the read pointer catches up to the write pointer, having read the last word from the FIFO.
+  </li>
+
+  <li>
+    <strong>Full Condition:</strong>  
+    The FIFO is full when the write pointer has wrapped around and caught up to the read pointer. This means that the write pointer has incremented past the final FIFO address and has wrapped around to the beginning of the FIFO memory buffer.
+  </li>
+
+  <li>
+    <strong>Wrapping Around Condition:</strong>  
+    To distinguish between the full and empty conditions when the pointers are equal, an extra bit is added to each pointer. This extra bit helps in identifying whether the pointers have wrapped around:
+    <ul>
+      <li>
+        When the write pointer increments past the final FIFO address, it will increment the unused Most Significant Bit (MSB) while setting the rest of the bits back to zero.
+      </li>
+      <li>
+        The same is done with the read pointer. If the MSBs of the two pointers are different, it means that the write pointer has wrapped one more time than the read pointer.
+      </li>
+      <li>
+        If the MSBs of the two pointers are the same, it means that both pointers have wrapped the same number of times.
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p align="justify">
+  This design technique helps in accurately determining the full and empty conditions of the FIFO.
+</p>
+
+
+
+
 
   <h4 id="graycode">Gray Code Counter</h4>
   <p>Explanation...</p>
