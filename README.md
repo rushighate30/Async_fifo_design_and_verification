@@ -87,9 +87,7 @@
 
 <h2 id="design">Design Space Exploration and Design Strategies</h2>
 <p style="text-align: justify;">
-  This section summarizes the design choices considered during development and the strategies selected to meet
-  performance, area, and reliability goals. Main trade-offs included memory depth versus latency, pointer width
-  versus implementation complexity, and synchronizer robustness versus area overhead.
+ The block diagram of async. FIFO that is implemented in this repo is given below. Thin lines represent single bit signal where as thisck lines represent multi-bit signal.
 </p>
 
 <!-- 🖼️ Example image block -->
