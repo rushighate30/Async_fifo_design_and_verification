@@ -25,13 +25,14 @@
         <li><a href="#signals">Signals Definition</a></li>
         <li>
           <a href="#modules">Dividing System Into Modules</a>
-          <ul>
-            <li><a href="#fifo">FIFO.v</a></li>
-            <li><a href="#fifo_memory">FIFO_memory.v</a></li>
-            <li><a href="#two_ff_sync">two_ff_sync.v</a></li>
-            <li><a href="#rptr_empty">rptr_empty.v</a></li>
-            <li><a href="#wptr_full">wptr_full.v</a></li>
-          </ul>
+            <ul>
+              <li><a href="#main">main.v</a></li>
+              <li><a href="#fifo_mem">FIFO.v</a></li>
+              <li><a href="#fifo_write">fifo_write.v</a></li>
+              <li><a href="#fifo_read">fifo_read.sv</a></li>
+              <li><a href="#write_2ff">write_2FF.sv</a></li>
+              <li><a href="#read_2ff">read_2FF.sv</a></li>
+            </ul>
         </li>
       </ul>
     </li>
@@ -101,8 +102,6 @@
 <p>In an asynchronous FIFO, the read and write operations are managed by separate clock domains. The write pointer always points to the next word to be written. On a FIFO-write operation, the memory location pointed to by the write pointer is written, and then the write pointer is incremented to point to the next location to be written. Similarly, the read pointer always points to the current FIFO word to be read. On reset, both pointers are set to zero. When the first data word is written to the FIFO, the write pointer increments, the empty flag is cleared, and the read pointer, which is still addressing the contents of the first FIFO memory word, immediately drives that first valid word onto the FIFO data output port to be read by the receiver logic. The FIFO is empty when the read and write pointers are both equal, and it is full when the write pointer has wrapped around and caught up to the read pointer.</p>
 
   <h4 id="conditions">Full, Empty and Wrapping Condition</h4>
-<h3>Full, Empty, and Wrapping Condition</h3>
-
 <p align="justify">
   The conditions for the FIFO to be full or empty are as follows:
 </p>
@@ -139,24 +138,43 @@
   This design technique helps in accurately determining the full and empty conditions of the FIFO.
 </p>
 
-
-
-
-
-  <h4 id="graycode">Gray Code Counter</h4>
-  <p>Explanation...</p>
-
   <h3 id="signals">Signals Definition</h3>
-  <p>Signals table goes here...</p>
+  <h3 id="signals">Signals Definition</h3>
 
-  <h3 id="modules">Dividing System Into Modules</h3>
-  <ul>
-    <li id="fifo"><strong>FIFO.v</strong> — Main FIFO integration module</li>
-    <li id="fifo_memory"><strong>FIFO_memory.v</strong> — Memory array file</li>
-    <li id="two_ff_sync"><strong>two_ff_sync.v</strong> — Synchronizer module</li>
-    <li id="rptr_empty"><strong>rptr_empty.v</strong> — Read pointer & empty flag</li>
-    <li id="wptr_full"><strong>wptr_full.v</strong> — Write pointer & full flag</li>
-  </ul>
+<p style="text-align: justify;">
+  The following signals are used in the asynchronous FIFO design:
+</p>
+
+<p style="text-align: justify;">
+  <strong><code>wr_clk</code></strong> : Write clock signal.<br>
+  <strong><code>rd_clk</code></strong> : Read clock signal.<br>
+  <strong><code>data_in</code></strong> : Write data bits.<br>
+  <strong><code>data_out</code></strong> : Read data bits.<br>
+  <strong><code>wr_en</code></strong> : Write clock enable. Controls the write operation to the FIFO memory. 
+  Data must not be written if the FIFO is full (<code>fifo_full = 1</code>).<br>
+  <strong><code>wr_ptr_bin_gry</code></strong> : Write pointer (Gray code).<br>
+  <strong><code>rd_ptr_bin_gry</code></strong> : Read pointer (Gray code).<br>
+  <strong><code>wr_ptr_bin</code></strong> : Write pointer increment. Controls the increment of <code>wr_ptr</code>.<br>
+  <strong><code>rd_ptr_bin</code></strong> : Read pointer increment. Controls the increment of <code>rd_ptr</code>.<br>
+  <strong><code>wr_addrs</code></strong> : Binary write pointer address. Location in FIFO memory to which <code>data_in</code> is written.<br>
+  <strong><code>rd_addrs</code></strong> : Binary read pointer address. Location in FIFO memory from which <code>rdata_out</code> is read.<br>
+  <strong><code>fifo_full</code></strong> : FIFO full flag. Goes high when the FIFO memory is full.<br>
+  <strong><code>fifo_empty</code></strong> : FIFO empty flag. Goes high when the FIFO memory is empty.<br>
+  <strong><code>wr_rst</code></strong> : Active low asynchronous reset for the write pointer handler.<br>
+  <strong><code>rd_rst</code></strong> : Active low asynchronous reset for the read pointer handler.<br>
+  <strong><code>wr_gry_sync</code></strong> : Read pointer synchronized to the <code>wr_clk</code> domain via 2 flip-flop synchronizer.<br>
+  <strong><code>rd_gry_sync</code></strong> : Write pointer synchronized to the <code>rd_clk</code> domain via 2 flip-flop synchronizer.
+</p>
+
+<h3 id="modules">Dividing System Into Modules</h3>
+<ul>
+  <li id="main"><strong>main.v</strong> — Top-level FIFO module integrating all submodules and handling clock domain crossing.</li>
+  <li id="fifo_mem"><strong>FIFO.v</strong> — FIFO memory array (dual-port RAM) for storing data.</li>
+  <li id="fifo_write"><strong>fifo_write.v</strong> — Write pointer control, Gray code generation, and full flag logic.</li>
+  <li id="fifo_read"><strong>fifo_read.sv</strong> — Read pointer control, Gray code generation, and empty flag logic.</li>
+  <li id="write_2ff"><strong>write_2FF.sv</strong> — 2-flip-flop synchronizer to safely pass write pointer to read clock domain.</li>
+  <li id="read_2ff"><strong>read_2FF.sv</strong> — 2-flip-flop synchronizer to safely pass read pointer to write clock domain.</li>
+</ul>
 
   <h2 id="testbench">Testbench Case Implementation</h2>
   <h3 id="waveforms">Waveforms</h3>
