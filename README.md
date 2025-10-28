@@ -32,7 +32,6 @@
               <li><a href="#fifo_read">fifo_read.sv</a></li>
               <li><a href="#write_2FF">write_2FF.sv</a></li>
               <li><a href="#write_2FF">read_2FF.sv</a></li>
-              <li><a href="tb_Async_fifo">tb_Async_fifo.v</a></li>
             </ul>
         </li>
       </ul>
@@ -248,7 +247,7 @@ This module increments the read pointer whenever a valid read enable (rd_en) is 
 </div>
 
   <h2 id="testbench">Testbench Case Implementation</h2>
-  <h3 id="tb_Async_fifo">tb_Async_fifo.v</h3>
+  <h3 id="testbench">tb_Async_fifo.v</h3>
 
 <p style="text-align: justify;">
   <a href="rtl_file/tb_Async_fifo.v">
