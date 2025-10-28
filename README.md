@@ -50,9 +50,8 @@
   <h2 id="author">Author</h2>
   <p>Vinayak Ghate</p>
 
- # instruction writing here 
-<h2 id="introduction">Introduction</h2>
 
+<h2 id="introduction">Introduction</h2>
 <p style="text-align: justify;">
   This project presents the design and verification of an <strong>Asynchronous FIFO (First-In, First-Out)</strong> memory structure,
   developed to achieve reliable <strong>Clock Domain Crossing (CDC)</strong> between two asynchronous clock domains. The main objective
@@ -86,7 +85,64 @@
 
 
 
-  <h2 id="design">Design Space Exploration and Design Strategies</h2>
+<h2 id="design">Design Space Exploration and Design Strategies</h2>
+<p style="text-align: justify;">
+  This section summarizes the design choices considered during development and the strategies selected to meet
+  performance, area, and reliability goals. Main trade-offs included memory depth versus latency, pointer width
+  versus implementation complexity, and synchronizer robustness versus area overhead.
+</p>
+
+<!-- 🖼️ Example image block -->
+<div style="text-align: center; margin: 20px 0;">
+  <img src="images/fifo_architecture.png" alt="FIFO Architecture Diagram" width="500" style="border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.2);" />
+  <p style="font-style: italic; font-size: 14px;">Figure 1: Asynchronous FIFO Architecture showing CDC and module interactions.</p>
+</div>
+
+<h3 id="dse-readwrite" style="text-align: justify;">Read &amp; Write Operations</h3>
+<p style="text-align: justify;">
+  Read and write pointers operate independently in their respective clock domains. The chosen approach uses
+  pointer incrementing with Gray-code encoding to minimize bit transitions during synchronization. Address wrapping
+  and next-pointer calculation are performed in binary after Gray-to-binary conversion for accurate indexing.
+</p>
+
+<h3 id="dse-signals" style="text-align: justify;">Signals Definition</h3>
+<p style="text-align: justify;">
+  Only essential signals are exposed: <code>wclk</code>, <code>rclk</code>, <code>wr_en</code>, <code>rd_en</code>,
+  <code>full</code>, and <code>empty</code>. Internal signals include synchronized pointer copies, binary addresses,
+  and memory read/write data buses. Minimizing exposed control signals reduces verification surface and simplifies integration.
+</p>
+
+<h3 id="dse-modules" style="text-align: justify;">Modularization Strategy</h3>
+<p style="text-align: justify;">
+  The system is divided into small reusable modules: top-level FIFO wrapper, memory array, pointer logic (read/write),
+  Gray/Binary conversion blocks, and a 2-FF synchronizer. This modular decomposition improves testability and allows
+  targeted optimization for critical blocks.
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   <h3 id="readwrite">Read and Write Operations</h3>
   <h4 id="operations">Operations</h4>
