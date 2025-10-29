@@ -44,7 +44,8 @@
     <li>
       <a href="#systemverilog">System Verilog Enviroment Verification</a>
       <ul>
-        <li><a href="#execution">Compile and Execution</a></li>
+        <li><a href="#execution">Compile and Execution</a></li> 
+        <li><a href="#Verification">Verification Waveforms</a></li>
       </ul>
     </li>
     <li><a href="#results">Results</a></li>
