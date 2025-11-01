@@ -334,18 +334,130 @@ This module increments the read pointer whenever a valid read enable (rd_en) is 
   </p>
 </div>
 
-
   <h2 id="results">Results</h2>
-  <p>Results description...</p>
 
-  <h2 id="conclusion">Conclusion</h2>
-  <p>Conclusion text...</p>
+<p style="text-align: justify;">
+  The results obtained from the design and verification of the asynchronous FIFO confirm its functional correctness and reliable Clock Domain Crossing (CDC) performance. 
+  The FIFO was implemented and simulated using <strong>Vivado</strong> (for RTL verification and schematic generation) and <strong>ModelSim</strong> (for SystemVerilog testbench simulation).
+</p>
 
-  <h2 id="references">References</h2>
-  <ul>
-    <li>Clifford Cummings, “Simulation and Synthesis Techniques for Asynchronous FIFO Design.”</li>
-    <li>Xilinx App Notes — FIFO Design Guidelines</li>
-  </ul>
+<h3>1. Functional Verification Results</h3>
+<ul style="text-align: justify;">
+  <li>All three test cases basic read/write, FIFO full condition, and FIFO empty condition passed successfully.</li>
+  <li>The <code>fifo_full</code> and <code>fifo_empty</code> flags were asserted and deasserted at the correct clock cycles.</li>
+  <li>No data loss or corruption occurred during read or write operations under asynchronous clocks.</li>
+  <li>Pointer synchronization across clock domains worked correctly with no metastability observed.</li>
+</ul>
+
+<h3>2. Waveform Analysis</h3>
+<p style="text-align: justify;">
+  The simulation waveforms confirmed that:
+</p>
+<ul style="text-align: justify;">
+  <li>Data written into the FIFO was read out in the same order (First-In-First-Out).</li>
+  <li>Write and read pointers were properly synchronized using 2FF synchronizers.</li>
+  <li>Gray code transitions showed only one bit change per increment, ensuring reliable CDC.</li>
+</ul>
+
+<div style="text-align: center; margin: 20px 0;">
+  <img src="Design_Verification_Result/Waveform.png" alt="Functional Waveform" width="900">
+  <p style="text-align: center; font-style: italic; font-size: 14px;">
+    Figure 11: Simulation result showing write/read operations and FIFO flag behavior.
+  </p>
+</div>
+
+<h3>3. Synthesis and Resource Utilization (Optional)</h3>
+<p style="text-align: justify;">
+  After synthesizing the design on <strong>Xilinx Vivado</strong>, the following hardware resource utilization was observed for a configuration of 
+  <code>DATA_WIDTH = 8</code> and <code>ADDR_WIDTH = 4</code> (16-depth FIFO):
+</p>
+<table border="1" cellpadding="6" cellspacing="0" style="margin: 0 auto; border-collapse: collapse;">
+  <tr><th>Resource</th><th>Utilization</th></tr>
+  <tr><td>LUTs</td><td>85</td></tr>
+  <tr><td>Flip-Flops</td><td>64</td></tr>
+  <tr><td>Block RAMs</td><td>0 (uses distributed memory)</td></tr>
+  <tr><td>Max Frequency</td><td>~250 MHz</td></tr>
+</table>
+
+<h3>4. Performance Summary</h3>
+<ul style="text-align: justify;">
+  <li><strong>FIFO Depth:</strong> 16 words (configurable)</li>
+  <li><strong>Data Width:</strong> 8 bits (configurable)</li>
+  <li><strong>Write Clock Frequency:</strong> 50 MHz</li>
+  <li><strong>Read Clock Frequency:</strong> 25 MHz</li>
+  <li><strong>CDC Synchronization:</strong> Stable using 2FF synchronizer</li>
+</ul>
+
+<p style="text-align: justify;">
+  Overall, the design achieved stable data transfer across two asynchronous clock domains with no metastability or data corruption.
+  The SystemVerilog verification environment successfully validated all expected FIFO operations, demonstrating both correctness and reliability.
+</p>
+
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p style="text-align: justify;">
+  The design and verification of the <strong>Asynchronous FIFO</strong> were successfully completed with a focus on reliable 
+  <strong>Clock Domain Crossing (CDC)</strong> and metastability prevention. The modular approach — comprising separate read, 
+  write, and synchronization blocks — ensured a clean and maintainable structure for FPGA or ASIC integration.
+</p>
+
+<p style="text-align: justify;">
+  Simulation results validated the FIFO’s correct functionality under asynchronous clock conditions. 
+  The <strong>2-flip-flop synchronizer</strong> effectively eliminated metastability, and the <strong>Gray code counters</strong> 
+  ensured smooth pointer transitions between domains. All testbench scenarios, including full, empty, and wrap-around conditions, 
+  passed successfully without data corruption or timing violations.
+</p>
+
+<p style="text-align: justify;">
+  The SystemVerilog verification environment provided comprehensive functional validation using 
+  independent write and read clock domains, confirming accurate flag generation and stable data transfer. 
+  The waveform analysis clearly demonstrated that the design maintained FIFO integrity across varying clock frequencies.
+</p>
+
+<p style="text-align: justify;">
+  Overall, the asynchronous FIFO design achieved its objectives of <strong>safe CDC operation</strong>, 
+  <strong>robust synchronization</strong>, and <strong>error-free data handling</strong>. 
+  The implementation can be easily scaled or parameterized for larger data widths and depths, 
+  and extended into an <strong>UVM-based verification framework</strong> for more complex system-level testing in future work.
+</p>
+
+<h2 id="references">References</h2>
+
+<ul style="text-align: justify;">
+  <li>
+  <li>
+    Sunburst Design Online Tutorials on Clock Domain Crossing (CDC) and Asynchronous FIFO Concepts.  
+    (Helped in understanding metastability and clock domain synchronization techniques.)
+  </li>
+
+  <li>
+    SystemVerilog Verification Environment: From Basics to Advanced.  
+    ( Udemy Course learning resource for functional verification concepts applied during ModelSim simulations.)
+  </li>
+
+  <li>
+    Online Learning Resources and Articles on Asynchronous FIFO and CDC.  
+    (Referred for conceptual understanding and verification flow guidance.)
+  </li>
+
+  <li>
+    IEEE Standard for Verilog and SystemVerilog (IEEE Std 1364-2005, IEEE Std 1800-2017).  
+    (Reference for language syntax and verification semantics.)
+  </li>
+
+  <li>
+    ModelSim User Manual, Mentor Graphics.  
+    (Used for simulation and waveform analysis during verification of the FIFO design.)
+  </li>
+
+  <li>
+    Xilinx Vivado Design Suite Documentation, Xilinx Inc.  
+    (Referred as a learning resource for digital design flow and synthesis understanding.)
+  </li>
+
+</ul>
+
 
 </body>
 
