@@ -1,8 +1,4 @@
-
-# create the work library here
-
-vlib work
-vmap work work
+# Compiling and Generating the Simulation Waveforms Files: It's step-by-step 
 
 # compile RTL Design files
 vlog ../rtl_file/main.v
