@@ -4,7 +4,7 @@
 vlib work
 vmap work work
 
-# compile RTL file
+# compile RTL Design files
 vlog ../rtl_file/main.v
 vlog ../rtl_file/fifo_write.v
 vlog ../rtl_file/fifo_read.sv
@@ -12,7 +12,7 @@ vlog ../rtl_file/read_2FF.sv
 vlog ../rtl_file/write_2FF.sv
 vlog ../rtl_file/FIFO.v
 
-#compile Verification File
+#compile SystemVerilog Verification Files
 
 # Compile package first
 vlog -sv ../sv_file/all_file.sv      
@@ -35,7 +35,6 @@ vlog -sv ../sv_file/test.sv
 
 # Compile testbench last
 vlog -sv ../sv_file/testbench.sv
-
 
 # Run simulation
 vsim -novopt work.testbench
