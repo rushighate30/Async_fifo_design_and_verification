@@ -192,7 +192,7 @@
 
 <h3 id="main">main.v</h3>
 <p style="text-align: justify;">
-  <a href="rtl_file/main.v">
+  <a href="rtl_file/Async_FIFO.v">
    <code>./rtl_file/main.v</code></a>
 is the code of this module. This module is a FIFO implementation with configurable data and address sizes. It consists of a memory module, read and write pointer handling modules, and read and write pointer synchronization modules. The read and write pointers are synchronized to the respective clock domains, and the read and write pointers are checked for empty and full conditions, respectively. The FIFO memory module stores the data and handles the read and write operations. The RTL schematics of this module is given below.</p>
 </p>
