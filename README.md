@@ -190,7 +190,7 @@
 </ol>
 
 
-<h3 id="Async_FIFO">main.v</h3>
+<h3 id="Async_FIFO">Async_FIFO.v</h3>
 <p style="text-align: justify;">
   <a href="rtl_file/Async_FIFO.v">
    <code>./rtl_file/Async_FIFO.v</code></a>
