@@ -25,7 +25,7 @@
         <li>
           <a href="#modules">Dividing System Into Modules</a>
             <ul>
-              <li><a href="#main">main.v</a></li>
+              <li><a href="#Async_FIFO">main.v</a></li>
               <li><a href="#fifo_mem">FIFO.v</a></li>
               <li><a href="#fifo_write">fifo_write.v</a></li>
               <li><a href="#fifo_read">fifo_read.sv</a></li>
