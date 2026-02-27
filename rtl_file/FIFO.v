@@ -15,7 +15,7 @@ module FIFO#(parameter DATA_WIDTH = 8, DEEP_WIDTH = 16, ADD_WIDTH = 3)
      output reg [DATA_WIDTH-1:0] data_out;
      
      
-     reg [DATA_WIDTH-1:0] fifo_mem [0:DEEP_WIDTH-1];  //  this is fifo memeory  16 deep and each row have  7:0 if i am chnage value of the addres 
+     reg [DATA_WIDTH-1:0] fifo_mem [0:DEEP_WIDTH-1];  //  this is fifo memeory  16 deep and each row have default size  7:0 if i am chnage value of the addres 
                                                         //   then automatically chnage fifo depth with repect to adress size 
     
 //   pointer to reset memory  
