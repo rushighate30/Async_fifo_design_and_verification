@@ -285,7 +285,7 @@ This module increments the read pointer whenever a valid read enable (rd_en) is 
 <h2 id="systemverilog">System Verilog Enviroment Verification</h2>
 
 <p style="text-align: justify;">
-  The SystemVerilog verification environment is designed to verify the functional correctness of the FIFO design. It ensures that the data is written, stored, and read correctly, with proper control signal behavior for full and empty conditions. The entire environment is developed in SystemVerilog and simulated using <strong>ModelSim</strong>. The verification result is represented in waveform format for analysis.
+  The SystemVerilog verification environment is designed to verify the functional correctness of the FIFO design. It ensures that the data is written, stored, and read correctly, with proper control signal behavior for full and empty conditions. The entire environment is developed in SystemVerilog and simulated using <strong>ModelSim</strong>. The verification result is presented as a waveform for analysis.
 </p>
 
 <h3 id="testbench">sv_file/testbench.sv</h3>
@@ -383,8 +383,8 @@ This module increments the read pointer whenever a valid read enable (rd_en) is 
 <ul style="text-align: justify;">
   <li><strong>FIFO Depth:</strong> 16 words (configurable)</li>
   <li><strong>Data Width:</strong> 8 bits (configurable)</li>
-  <li><strong>Write Clock Frequency:</strong> 50 MHz</li>
-  <li><strong>Read Clock Frequency:</strong> 25 MHz</li>
+  <li><strong>Write Clock Frequency:</strong> 100 MHz</li>
+  <li><strong>Read Clock Frequency:</strong> 50 MHz</li>
   <li><strong>CDC Synchronization:</strong> Stable using 2FF synchronizer</li>
 </ul>
 
@@ -421,6 +421,7 @@ This module increments the read pointer whenever a valid read enable (rd_en) is 
   The implementation can be easily scaled or parameterized for larger data widths and depths, 
   and extended into a <strong>UVM-based verification framework</strong> for more complex system-level testing in future work.
 </p>
+
 
 <h2 id="references">References</h2>
 
