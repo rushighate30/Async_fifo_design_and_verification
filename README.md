@@ -476,7 +476,34 @@ Detailed architectural diagrams, RTL hierarchy views, simulation waveforms, and 
   <li>Industry-aligned IP packaging approach</li>
 </ul>
 
+<h3>5. IP Wrapper & Packaging Structure</h3>
 
+<p style="text-align: justify;">
+After packaging the Async FIFO as a custom IP in Vivado, an IP wrapper structure is generated to enable seamless integration into FPGA-based systems. The packaging process automatically creates a top-level wrapper file and metadata required for IP catalog recognition.
+</p>
+
+<ul style="text-align: justify;">
+  <li><strong>Top-Level Wrapper:</strong> <code>Async_FIFO_IP_v1_0.v</code> acts as the integration layer between the user design and the internal FIFO RTL modules.</li>
+  
+  <li><strong>Parameter Exposure:</strong> Parameters such as <code>DATA_WIDTH</code> and <code>DEPTH</code> are exposed at the IP level, allowing configuration directly from the Vivado IP customization GUI.</li>
+  
+  <li><strong>component.xml:</strong> Contains IP metadata including versioning, interface definitions, and packaging information required by Vivado IP Catalog.</li>
+  
+  <li><strong>Interface Definition:</strong> Write and Read clock domains are clearly defined with separate ports, ensuring clean CDC boundary visibility during system integration.</li>
+  
+  <li><strong>Reusable Hierarchy:</strong> Internal modules (write logic, read logic, memory, synchronizers) remain modular and are instantiated inside the IP wrapper.</li>
+</ul>
+
+<p style="text-align: justify;">
+The packaged IP directory includes synthesis-ready RTL, configuration metadata, and GUI customization files generated during IP packaging.
+</p>
+
+<p style="text-align: justify;">
+Repository Path:
+<code>Async_FIFO_IP/</code> <br>
+Verification Results:
+<code>Design_Verification_Result/</code>
+</p>
 
 <h2 id="references">References</h2>
 
