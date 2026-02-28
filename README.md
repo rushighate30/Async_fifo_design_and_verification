@@ -468,7 +468,7 @@ This Async FIFO is structured as a reusable IP block suitable for FPGA or ASIC-b
 <h3>3. IP Block GUI Results</h3>
 
 <p style="text-align: justify;">
-Detailed architectural diagrams, RTL hierarchy views, simulation waveforms, and verification results are available in the <code>Design_Verification_Result</code> directory. These results demonstrate functional correctness, CDC reliability, corner-case validation, and IP-level verification coverage.
+Detailed architectural diagrams, RTL hierarchy views, simulation waveforms, and verification results are available in the <code><a href="./Design_Verification_Result">Design_Verification_Result </a> </code> directory. These results demonstrate functional correctness, CDC reliability, corner-case validation, and IP-level verification coverage.
 </p>
 
 <div style="text-align: center; margin: 20px 0;">
