@@ -430,7 +430,7 @@ This module increments the read pointer whenever a valid read enable (rd_en) is 
 In addition to the standalone Asynchronous FIFO implementation, this repository is extended with a reusable, configurable, and integration-ready IP-oriented design methodology. The FIFO has been architected in a modular structure to align with industry-standard IP development practices used in FPGA and ASIC environments.
 </p>
 
-<h3>IP-Level Design Considerations</h3>
+<h3>1. IP-Level Design Considerations</h3>
 
 <ul style="text-align: justify;">
   <li><strong>Parameterization:</strong> Configurable <code>DATA_WIDTH</code> and <code>DEPTH</code> with derived <code>ADDR_WIDTH = $clog2(DEPTH)</code> to support multiple system configurations.</li>
@@ -446,7 +446,7 @@ In addition to the standalone Asynchronous FIFO implementation, this repository 
   <li><strong>Scalability:</strong> Architecture supports extension to higher depths, wider data paths, and seamless SoC integration.</li>
 </ul>
 
-<h3>IP Integration Capability</h3>
+<h3>2. IP Integration Capability</h3>
 
 <p style="text-align: justify;">
 This Async FIFO is structured as a reusable IP block suitable for FPGA or ASIC-based systems. It can be integrated into:
@@ -460,13 +460,13 @@ This Async FIFO is structured as a reusable IP block suitable for FPGA or ASIC-b
   <li>Multi-clock FPGA designs</li>
 </ul>
 
-<h3>IP Documentation & Results</h3>
+<h3>3. IP Documentation & Results</h3>
 
 <p style="text-align: justify;">
 Detailed architectural diagrams, RTL hierarchy views, simulation waveforms, and verification results are available in the <code>Design_Verification_Result/</code> directory. These results demonstrate functional correctness, CDC reliability, corner-case validation, and IP-level verification coverage.
 </p>
 
-<h3>Design Methodology</h3>
+<h3>4. Design Methodology</h3>
 
 <ul style="text-align: justify;">
   <li>RTL Design in Verilog</li>
