@@ -50,7 +50,7 @@
     </li>
     <li><a href="#results">Results</a></li>
     <li><a href="#conclusion">Conclusion</a></li>
-    <li><a href="#Custom IP Design Extension<">Custom IP Design Extension<</a></li>
+    <li><a href="#Custom IP Design Extension">Custom IP Design Extension</a></li>
     <li><a href="#references">References</a></li>
   </ul>
 
