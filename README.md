@@ -50,7 +50,13 @@
     </li>
     <li><a href="#results">Results</a></li>
     <li><a href="#conclusion">Conclusion</a></li>
-    <li><a href="#Custom IP Design Extension">Custom IP Design Extension</a></li>
+    <li>
+          <a href="#Custom IP Design Extension">Custom IP Design Extension</a>
+            <ul>
+              <li><a href="#Async_FIFO_design_1_wrapper.v">Async_FIFO_design_1_wrapper.v</a></li>
+              <li><a href="#component.xml">component.xml</a></li>
+            </ul>
+        </li>
     <li><a href="#references">References</a></li>
   </ul>
 
@@ -496,13 +502,6 @@ After packaging the Async FIFO as a custom IP in Vivado, an IP wrapper structure
 
 <p style="text-align: justify;">
 The packaged IP directory includes synthesis-ready RTL, configuration metadata, and GUI customization files generated during IP packaging.
-</p>
-
-<p style="text-align: justify;">
-Repository Path:
-<code>Async_FIFO_IP/</code> <br>
-Verification Results:
-<code>Design_Verification_Result/</code>
 </p>
 
 <h2 id="references">References</h2>
