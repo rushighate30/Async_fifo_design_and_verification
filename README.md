@@ -50,6 +50,7 @@
     </li>
     <li><a href="#results">Results</a></li>
     <li><a href="#conclusion">Conclusion</a></li>
+    <li><a href="#Custom IP Design Extension<">Custom IP Design Extension<</a></li>
     <li><a href="#references">References</a></li>
   </ul>
 
@@ -421,6 +422,60 @@ This module increments the read pointer whenever a valid read enable (rd_en) is 
   The implementation can be easily scaled or parameterized for larger data widths and depths, 
   and extended into a <strong>UVM-based verification framework</strong> for more complex system-level testing in future work.
 </p>
+
+
+ <h2 id="ipdesign">Custom IP Design Extension</h2>
+
+<p style="text-align: justify;">
+In addition to the standalone Asynchronous FIFO implementation, this repository is extended with a reusable, configurable, and integration-ready IP-oriented design methodology. The FIFO has been architected in a modular structure to align with industry-standard IP development practices used in FPGA and ASIC environments.
+</p>
+
+<h3>IP-Level Design Considerations</h3>
+
+<ul style="text-align: justify;">
+  <li><strong>Parameterization:</strong> Configurable <code>DATA_WIDTH</code> and <code>DEPTH</code> with derived <code>ADDR_WIDTH = $clog2(DEPTH)</code> to support multiple system configurations.</li>
+  
+  <li><strong>Modular Architecture:</strong> Clearly separated Write Control, Read Control, Dual-Port Memory, and Synchronization blocks to enhance reusability and maintainability.</li>
+  
+  <li><strong>Clock Domain Isolation:</strong> Independent write (<code>wr_clk</code>) and read (<code>rd_clk</code>) clock domains ensuring clean CDC boundary handling.</li>
+  
+  <li><strong>CDC-Safe Implementation:</strong> Binary-to-Gray pointer conversion with two-flip-flop (2FF) synchronizers to prevent metastability and ensure reliable cross-domain communication.</li>
+  
+  <li><strong>Full/Empty Flag Logic:</strong> Robust flag generation logic using synchronized Gray-coded pointers.</li>
+  
+  <li><strong>Scalability:</strong> Architecture supports extension to higher depths, wider data paths, and seamless SoC integration.</li>
+</ul>
+
+<h3>IP Integration Capability</h3>
+
+<p style="text-align: justify;">
+This Async FIFO is structured as a reusable IP block suitable for FPGA or ASIC-based systems. It can be integrated into:
+</p>
+
+<ul style="text-align: justify;">
+  <li>AXI/AHB-based subsystems</li>
+  <li>DMA Controllers</li>
+  <li>High-speed data buffering paths</li>
+  <li>Processor-to-peripheral CDC interfaces</li>
+  <li>Multi-clock FPGA designs</li>
+</ul>
+
+<h3>IP Documentation & Results</h3>
+
+<p style="text-align: justify;">
+Detailed architectural diagrams, RTL hierarchy views, simulation waveforms, and verification results are available in the <code>Design_Verification_Result/</code> directory. These results demonstrate functional correctness, CDC reliability, corner-case validation, and IP-level verification coverage.
+</p>
+
+<h3>Design Methodology</h3>
+
+<ul style="text-align: justify;">
+  <li>RTL Design in Verilog</li>
+  <li>Self-checking SystemVerilog Testbench</li>
+  <li>Functional Simulation and Waveform Analysis</li>
+  <li>Corner-case and Boundary-condition Validation</li>
+  <li>Industry-aligned IP packaging approach</li>
+</ul>
+
 
 
 <h2 id="references">References</h2>
