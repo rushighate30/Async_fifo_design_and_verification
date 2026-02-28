@@ -516,10 +516,6 @@ After packaging the Async FIFO as a custom IP in Vivado, an IP wrapper structure
   <li><strong>Reusable Hierarchy:</strong> Internal modules (write logic, read logic, memory, synchronizers) remain modular and are instantiated inside the IP wrapper.</li>
 </ul>
 
-<p style="text-align: justify;">
-The packaged IP directory includes synthesis-ready RTL, configuration metadata, and GUI customization files generated during IP packaging.
-</p>
-
 <h2 id="references">References</h2>
 
 <ul style="text-align: justify;">
