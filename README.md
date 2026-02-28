@@ -424,7 +424,7 @@ This module increments the read pointer whenever a valid read enable (rd_en) is 
 </p>
 
 
- <h2 id="ipdesign">Custom IP Design Extension</h2>
+ <h2 id="Custom IP Design Extension">Custom IP Design Extension</h2>
 
 <p style="text-align: justify;">
 In addition to the standalone Asynchronous FIFO implementation, this repository is extended with a reusable, configurable, and integration-ready IP-oriented design methodology. The FIFO has been architected in a modular structure to align with industry-standard IP development practices used in FPGA and ASIC environments.
