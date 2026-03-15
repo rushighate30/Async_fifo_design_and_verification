@@ -25,24 +25,6 @@ class scoreboard;
 
    				// there we are comparing the actual input and desired output 
 
-   				// if(trans.wr_en == 1'b1 && !trans.fifo_full)begin
-   				// 	// $display("In write score board");
-   				// 	if(trans.data_in != privious_data_in) begin
-   				// 	   $display("Data Write data_in=%d",trans.data_in);
-   				// 	   privious_data_in = trans.data_in;
-   				// 	end
-   				// end
-
-
-   				// if(trans.rd_en == 1'b1 && !trans.fifo_empty)begin
-   					
-   				// 	if(trans.data_out != privious_data_out)begin
-   				// 		$display("Data Read data_out=%d",trans.data_out);
-   				// 		privious_data_out = trans.data_out;
-   				// 	end
-   				// end
-
-
    				if( (trans.wr_en == 1'b1 && !trans.fifo_full) || (trans.rd_en == 1'b1 && !trans.fifo_empty))begin
 
    				   if( (trans.data_in != privious_data_in) || (trans.data_out != privious_data_out) )begin
