@@ -4,9 +4,7 @@ module FIFO#(parameter DATA_WIDTH = 8, DEEP_WIDTH = 16, ADD_WIDTH = 3)
 //   Input Pins
      input wr_clk;
      input rst_n;
-     // input wr_rst;
      input rd_clk;
-     // input rd_rst;
      input [ADD_WIDTH-1:0] wr_addrs;
      input [ADD_WIDTH-1:0] rd_addrs;
      input [DATA_WIDTH-1:0] data_in;
@@ -15,13 +13,13 @@ module FIFO#(parameter DATA_WIDTH = 8, DEEP_WIDTH = 16, ADD_WIDTH = 3)
      output reg [DATA_WIDTH-1:0] data_out;
      
      
-     reg [DATA_WIDTH-1:0] fifo_mem [0:DEEP_WIDTH-1];  //  this is fifo memeory  16 deep and each row have default size  7:0 if i am chnage value of the addres 
-                                                        //   then automatically chnage fifo depth with repect to adress size 
+     reg [DATA_WIDTH-1:0] fifo_mem [0:DEEP_WIDTH-1];  //  this is a FIFO memory  16 deep, and each row has a default size  7:0. If I change the value of the address 
+                                                        //   then automatically change FIFO depth with respect to address size 
     
 //   pointer to reset memory  
      integer i = 0;
 
-//   write data in the fifo memory
+//   write data in the FIFO memory
      always @(posedge wr_clk or negedge rst_n)begin
           
           if(~rst_n)begin
