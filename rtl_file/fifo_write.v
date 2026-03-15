@@ -62,6 +62,4 @@ module fifo_write #(parameter ADD_WIDTH = 3 )
 //    initial $monitor("Read wr_ptr_bin=%b, wr_gry_bin_empty=%b",wr_ptr_bin,rd_gry_bin_full);
      
    
-//   assign  fifo_full = ({~wr_ptr_bin[3], wr_ptr_bin[2:0]} == rd_gry_bin_full);  // its generated the flag based on binary checking
-   
 endmodule 
